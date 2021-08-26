@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import MainHeader from "./components/MainHeader/MainHeader";
+import classes from "./App.module.css";
 function App() {
   const [foodList, setFoodList] = useState([
     {
@@ -60,7 +61,24 @@ function App() {
     UpdatedFoodList[index].ItemNeeded = itemNeed;
     setFoodList(UpdatedFoodList);
   };
-  return <>hello</>;
+  return (
+    <>
+      <MainHeader></MainHeader>
+      <section className={classes.ImageSection}>
+        <div className={classes.HotelDescription}>
+          <h4>Delicious Food, Delivered to you</h4>
+          <p>
+            Choose your favourite breakfast from our broad section of available
+            foods and enjoy a delicious breakfast at your home
+          </p>
+          <p>
+            All our meals are cooked with high quality ingredients, just-in-time
+            and of course by experienced chefs
+          </p>
+        </div>
+      </section>
+    </>
+  );
 }
 
 export default App;

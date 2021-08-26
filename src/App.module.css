@@ -1,3 +1,36 @@
+* {
+  margin: 0;
+}
 .App {
   text-align: center;
+}
+.ImageSection {
+  margin-top: 3rem;
+  background-image: url("../src/Images/Indian-Breakfast.jpg");
+  height: 25rem;
+  background-size: cover;
+  position: relative;
+}
+.HotelDescription {
+  position: absolute;
+  width: 60%;
+  top: 80%;
+  left: 15%;
+  margin: auto;
+  color: white;
+  padding: 1rem;
+  background-color: #2c2c2cd6;
+  border: 2px solid #2c2525;
+  font-weight: bolder;
+  box-shadow: 4px 4px #1e1c1c69;
+  border-radius: 5px;
+  text-align: center;
+}
+.HotelDescription h4 {
+  font-size: 1.5rem;
+}
+.HotelDescription p,
+.HotelDescription h4 {
+  margin-bottom: 0.3rem;
+  word-spacing: 2px;
 }
