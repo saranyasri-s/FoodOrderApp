@@ -1,0 +1,61 @@
+.Backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #352f2fe8;
+}
+.CartItems {
+  position: fixed;
+  z-index: 2;
+  width: 60%;
+  top: 30%;
+  left: 19%;
+  background-color: white;
+
+  border-radius: 10px;
+  list-style-type: none;
+  padding: 1rem;
+}
+.totalAmount {
+  margin: 0.6rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.totalAmount p {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+}
+.buttons button {
+  margin-left: 0.5rem;
+}
+.close {
+  padding: 0.3rem 1rem;
+  border: 1px solid #5b0b0b;
+  color: #5b0b0b;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  background-color: rgb(223, 219, 219);
+}
+.order {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  background-color: #5b0b0b;
+  color: white;
+  letter-spacing: 0.1rem;
+  border: 1px solid #5b0b0b;
+  cursor: pointer;
+}
+.order:hover {
+  background-color: rgb(141, 7, 34);
+}

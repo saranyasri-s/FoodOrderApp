@@ -5,10 +5,9 @@ function MainHeader(props) {
     <header className={classes.MainHeader}>
       <p>ReactHotel</p>
 
-      <div className={classes.CartButton}>
-        <div>dd</div>
+      <div onClick={props.onModalOpen} className={classes.CartButton}>
         <p>Your Cart</p>
-        <div>dd</div>
+        <div className={classes.totalItems}>{props.totalItems}</div>
       </div>
     </header>
   );

@@ -2,3 +2,6 @@ body {
   margin: 0;
   background-color: #12080dde;
 }
+* {
+  font-family: "Roboto", sans-serif;
+}

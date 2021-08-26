@@ -1,46 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import MainHeader from "./components/MainHeader/MainHeader";
 import classes from "./App.module.css";
+import FoodItems from "./components/FoodItems/FoodItems";
+import Cart from "./components/MainHeader/Cart/Cart";
 function App() {
   const [foodList, setFoodList] = useState([
     {
       item: "Idly",
       itemDescription: "steamed rice cakes",
       price: "77",
-      ItemNeeded: 0,
+      itemNeeded: 0,
       id: "Idly",
     },
     {
       item: "Vada",
       itemDescription: "crispy savoury doughnuts",
       price: "35",
-      ItemNeeded: 0,
+      itemNeeded: 0,
       id: "Vada",
     },
     {
       item: "Uttapam",
       itemDescription: "pizza-pancake hybrids",
       price: "90",
-      ItemNeeded: 0,
+      itemNeeded: 0,
       id: "Uttapam",
     },
     {
       item: "Masala dosa",
       itemDescription: "with spicy mash of potato and onion",
       price: "107",
-      ItemNeeded: 0,
+      itemNeeded: 0,
       id: "Masala dosa",
     },
   ]);
+  const [modalOpen, setModalOpen] = useState(false);
 
+  const totalItemsNumberArr = foodList.map((food) => {
+    return food.itemNeeded;
+  });
+  let totalItems = 0;
+  for (let i = 0; i < totalItemsNumberArr.length; i++) {
+    totalItems = totalItems + totalItemsNumberArr[i];
+  }
   const addItemHandler = (id) => {
     const UpdatedFoodList = [...foodList];
     const updatedFood = UpdatedFoodList.filter((food) => {
       return food.id === id;
     });
     const index = UpdatedFoodList.indexOf(updatedFood[0]);
-    UpdatedFoodList[index].ItemNeeded += 1;
-    setFoodList(UpdatedFoodList);
+
+    if (index >= 0) {
+      UpdatedFoodList[index].itemNeeded += 1;
+      setFoodList(UpdatedFoodList);
+    }
   };
 
   const removeItemHandler = (id) => {
@@ -49,21 +63,31 @@ function App() {
       return food.id === id;
     });
     const index = UpdatedFoodList.indexOf(updatedFood[0]);
-    UpdatedFoodList[index].ItemNeeded -= 1;
+    UpdatedFoodList[index].itemNeeded -= 1;
     setFoodList(UpdatedFoodList);
   };
-  const setItemNeeded = (id, itemNeed) => {
+  const AddItemNeededFromInputHandler = (id, itemNeed) => {
     const UpdatedFoodList = [...foodList];
     const updatedFood = UpdatedFoodList.filter((food) => {
       return food.id === id;
     });
+    const itemNeedInNumber = +itemNeed;
     const index = UpdatedFoodList.indexOf(updatedFood[0]);
-    UpdatedFoodList[index].ItemNeeded = itemNeed;
+    UpdatedFoodList[index].itemNeeded = itemNeedInNumber;
     setFoodList(UpdatedFoodList);
+  };
+  const closeModalHandler = () => {
+    setModalOpen(false);
+  };
+  const modalOpenHandler = () => {
+    setModalOpen(true);
   };
   return (
     <>
-      <MainHeader></MainHeader>
+      <MainHeader
+        totalItems={totalItems}
+        onModalOpen={modalOpenHandler}
+      ></MainHeader>
       <section className={classes.ImageSection}>
         <div className={classes.HotelDescription}>
           <h4>Delicious Food, Delivered to you</h4>
@@ -77,6 +101,19 @@ function App() {
           </p>
         </div>
       </section>
+      <FoodItems
+        onFoodNeeded={AddItemNeededFromInputHandler}
+        onAddFood={addItemHandler}
+        foodItems={foodList}
+      ></FoodItems>
+      {modalOpen && (
+        <Cart
+          onAddItem={addItemHandler}
+          onRemoveItem={removeItemHandler}
+          foodList={foodList}
+          onCloseModal={closeModalHandler}
+        ></Cart>
+      )}
     </>
   );
 }

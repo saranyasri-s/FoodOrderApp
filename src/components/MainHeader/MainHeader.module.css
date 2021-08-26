@@ -9,19 +9,24 @@
   width: 100%;
   top: 0;
   left: 0;
+  letter-spacing: 1px;
 }
 .CartButton {
   display: flex;
   align-items: center;
   color: white;
-  padding: 0.4rem 1rem;
-  background-color: rgb(87 4 4);
-  border: 2px solid rgb(87 4 4);
+  padding: 0.4rem 1.3rem;
+  background-color: rgb(61 6 6);
+  border: 2px solid rgb(61 6 6);
   border-radius: 15px;
   cursor: pointer;
 }
+.CartButton p {
+  padding-right: 0.6rem;
+  font-size: small;
+}
 .CartButton:hover {
-  background-color: rgb(127 16 16);
+  background-color: rgb(80, 23, 23);
 }
 .MainHeader > p {
   margin: 0;
@@ -31,4 +36,10 @@
 }
 .CartButton p {
   margin: 0;
+}
+.totalItems {
+  font-size: small;
+  background-color: #850c0c;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
 }

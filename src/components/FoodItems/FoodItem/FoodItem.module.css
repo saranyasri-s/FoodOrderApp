@@ -1,0 +1,54 @@
+.FoodItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid grey;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ebe8e8;
+  align-items: center;
+}
+.FoodItem button {
+  display: block;
+}
+.foodItemLeft p {
+  padding-bottom: 0.3rem;
+}
+.item {
+  font-weight: bold;
+}
+.itemDescription {
+  font-style: italic;
+  font-size: small;
+  color: rgb(49, 47, 47);
+}
+.price {
+  color: chocolate;
+  font-size: small;
+  font-weight: bold;
+}
+.foodItemRight {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+.foodItemRight label {
+  font-weight: bold;
+  padding-right: 0.4rem;
+}
+.foodItemRight input {
+  width: 2rem;
+  border: 1px solid #d9c8c8;
+}
+.foodItemRight button {
+  margin-top: 0.3rem;
+  background-color: #802222;
+  color: white;
+  padding: 0.2rem 1.5rem;
+  border: 2px solid #802222;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.foodItemRight button:hover {
+  background-color: #a01414;
+}

@@ -5,26 +5,30 @@
   text-align: center;
 }
 .ImageSection {
-  margin-top: 3rem;
+  margin-top: 44px;
   background-image: url("../src/Images/Indian-Breakfast.jpg");
-  height: 25rem;
+  min-height: 25rem;
   background-size: cover;
   position: relative;
+  margin-bottom: 1rem;
 }
 .HotelDescription {
   position: absolute;
-  width: 60%;
-  top: 80%;
-  left: 15%;
+  width: 63%;
+  bottom: 0;
+  left: 19%;
   margin: auto;
   color: white;
   padding: 1rem;
   background-color: #2c2c2cd6;
-  border: 2px solid #2c2525;
-  font-weight: bolder;
-  box-shadow: 4px 4px #1e1c1c69;
+  border: 2px solid #2e2a2a;
+  box-sizing: border-box;
+
+  box-shadow: 4px 4px #3023237d;
+
   border-radius: 5px;
   text-align: center;
+  letter-spacing: 1px;
 }
 .HotelDescription h4 {
   font-size: 1.5rem;

@@ -1,0 +1,10 @@
+.FoodItems {
+  width: 62%;
+  margin: auto;
+  border: 2px solid #12080dde;
+  background-color: white;
+  border-radius: 10px;
+  list-style-type: none;
+  padding: 1rem;
+  box-sizing: border-box;
+}
