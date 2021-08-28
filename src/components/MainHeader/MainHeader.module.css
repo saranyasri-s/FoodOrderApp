@@ -36,6 +36,7 @@
 }
 .CartButton p {
   margin: 0;
+  margin-left: 0.6rem;
 }
 .totalItems {
   font-size: small;
