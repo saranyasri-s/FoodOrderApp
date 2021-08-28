@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Cart.module.css";
 import CartItems from "./CartItems";
-function Cart(props) {
-  const filteredFoodList = props.foodList.filter((food) => {
+import ItemListContext from "../../../store/itemListContext";
+import ModalOpenContext from "../../../store/modalOpenContext";
+function Cart() {
+  const itemListCtx = useContext(ItemListContext);
+  const modalCtx = useContext(ModalOpenContext);
+  const filteredFoodList = itemListCtx.foodList.filter((food) => {
     return food.itemNeeded > 0;
   });
   const totalAmountArr = filteredFoodList.map((food) => {
@@ -17,7 +21,10 @@ function Cart(props) {
   return (
     <>
       {ReactDOM.createPortal(
-        <div onClick={props.onCloseModal} className={classes.Backdrop}></div>,
+        <div
+          onClick={modalCtx.onCloseModal}
+          className={classes.Backdrop}
+        ></div>,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
@@ -29,8 +36,8 @@ function Cart(props) {
                   food={food.item}
                   itemNeeded={food.itemNeeded}
                   price={food.price}
-                  onAddItem={props.onAddItem}
-                  onRemoveItem={props.onRemoveItem}
+                  onAddItem={itemListCtx.onAddItem}
+                  onRemoveItem={itemListCtx.onRemoveItem}
                   id={food.id}
                 ></CartItems>
               </li>
@@ -43,7 +50,10 @@ function Cart(props) {
                 <p> Rs {totalAmount}</p>
               </div>
               <div className={classes.buttons}>
-                <button onClick={props.onCloseModal} className={classes.close}>
+                <button
+                  onClick={modalCtx.onCloseModal}
+                  className={classes.close}
+                >
                   Close
                 </button>
                 <button

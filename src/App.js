@@ -4,6 +4,8 @@ import MainHeader from "./components/MainHeader/MainHeader";
 import classes from "./App.module.css";
 import FoodItems from "./components/FoodItems/FoodItems";
 import Cart from "./components/MainHeader/Cart/Cart";
+import ModalOpenContext from "./store/modalOpenContext";
+import itemListContext from "./store/itemListContext";
 function App() {
   const [foodList, setFoodList] = useState([
     {
@@ -83,38 +85,42 @@ function App() {
     setModalOpen(true);
   };
   return (
-    <>
-      <MainHeader
-        totalItems={totalItems}
-        onModalOpen={modalOpenHandler}
-      ></MainHeader>
-      <section className={classes.ImageSection}>
-        <div className={classes.HotelDescription}>
-          <h4>Delicious Food, Delivered to you</h4>
-          <p>
-            Choose your favourite breakfast from our broad section of available
-            foods and enjoy a delicious breakfast at your home
-          </p>
-          <p>
-            All our meals are cooked with high quality ingredients, just-in-time
-            and of course by experienced chefs
-          </p>
-        </div>
-      </section>
-      <FoodItems
-        onFoodNeeded={AddItemNeededFromInputHandler}
-        onAddFood={addItemHandler}
-        foodItems={foodList}
-      ></FoodItems>
-      {modalOpen && (
-        <Cart
-          onAddItem={addItemHandler}
-          onRemoveItem={removeItemHandler}
-          foodList={foodList}
-          onCloseModal={closeModalHandler}
-        ></Cart>
-      )}
-    </>
+    <itemListContext.Provider
+      value={{
+        foodList: foodList,
+        onFoodNeeded: AddItemNeededFromInputHandler,
+        onAddFood: addItemHandler,
+        onAddItem: addItemHandler,
+        onRemoveItem: removeItemHandler,
+      }}
+    >
+      <ModalOpenContext.Provider
+        value={{
+          isModalOpen: modalOpen,
+          onModalOpen: modalOpenHandler,
+          onCloseModal: closeModalHandler,
+        }}
+      >
+        <MainHeader totalItems={totalItems}></MainHeader>
+
+        <section className={classes.ImageSection}>
+          <div className={classes.HotelDescription}>
+            <h4>Delicious Food, Delivered to you</h4>
+            <p>
+              Choose your favourite breakfast from our broad section of
+              available foods and enjoy a delicious breakfast at your home
+            </p>
+            <p>
+              All our meals are cooked with high quality ingredients,
+              just-in-time and of course by experienced chefs
+            </p>
+          </div>
+        </section>
+        <FoodItems></FoodItems>
+
+        {modalOpen && <Cart></Cart>}
+      </ModalOpenContext.Provider>
+    </itemListContext.Provider>
   );
 }
 

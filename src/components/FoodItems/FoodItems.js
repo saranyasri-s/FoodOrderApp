@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import FoodItem from "./FoodItem/FoodItem";
 import classes from "./FoodItems.module.css";
-function FoodItems(props) {
+import itemListContext from "../../store/itemListContext";
+function FoodItems() {
+  const foodListCtx = useContext(itemListContext);
   return (
     <ul className={classes.FoodItems}>
-      {props.foodItems.map((foodItem) => (
+      {foodListCtx.foodList.map((foodItem) => (
         <li key={foodItem.id}>
           <FoodItem
             id={foodItem.id}
@@ -12,8 +14,8 @@ function FoodItems(props) {
             itemDescription={foodItem.itemDescription}
             price={foodItem.price}
             itemNeeded={foodItem.itemNeeded}
-            onAddFood={props.onAddFood}
-            onFoodNeeded={props.onFoodNeeded}
+            onAddFood={foodListCtx.onAddFood}
+            onFoodNeeded={foodListCtx.onFoodNeeded}
           ></FoodItem>
         </li>
       ))}
