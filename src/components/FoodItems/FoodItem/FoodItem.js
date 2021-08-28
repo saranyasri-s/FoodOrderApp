@@ -5,7 +5,7 @@ function FoodItem(props) {
   useEffect(() => {
     const itemNeeded = props.itemNeeded;
     setItemsNeeded(itemNeeded);
-  });
+  }, [props.itemNeeded]);
   const inputHandler = (e) => {
     const value = e.target.value;
     setItemsNeeded(value);
