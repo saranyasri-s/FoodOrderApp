@@ -38,3 +38,25 @@
   margin-bottom: 0.3rem;
   word-spacing: 2px;
 }
+.loading {
+  width: 62%;
+  margin: auto;
+  border: 2px solid #12080dde;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+.error {
+  width: 62%;
+  margin: auto;
+  border: 2px solid #12080dde;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}

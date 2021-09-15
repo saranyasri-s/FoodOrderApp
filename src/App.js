@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import MainHeader from "./components/MainHeader/MainHeader";
 import classes from "./App.module.css";
@@ -7,36 +7,44 @@ import Cart from "./components/MainHeader/Cart/Cart";
 import ModalOpenContext from "./store/modalOpenContext";
 import itemListContext from "./store/itemListContext";
 function App() {
-  const [foodList, setFoodList] = useState([
-    {
-      item: "Idly",
-      itemDescription: "steamed rice cakes",
-      price: "77",
-      itemNeeded: 0,
-      id: "Idly",
-    },
-    {
-      item: "Vada",
-      itemDescription: "crispy savoury doughnuts",
-      price: "35",
-      itemNeeded: 0,
-      id: "Vada",
-    },
-    {
-      item: "Uttapam",
-      itemDescription: "pizza-pancake hybrids",
-      price: "90",
-      itemNeeded: 0,
-      id: "Uttapam",
-    },
-    {
-      item: "Masala dosa",
-      itemDescription: "with spicy mash of potato and onion",
-      price: "107",
-      itemNeeded: 0,
-      id: "Masala dosa",
-    },
-  ]);
+  const [foodList, setFoodList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    const fetchmeals = async () => {
+      setIsLoading(true);
+      setError(false);
+
+      const response = await fetch(
+        "https://myfoodorderapp-91f15-default-rtdb.firebaseio.com/meals.json"
+      );
+      if (!response.ok) {
+        throw new Error("true");
+      }
+      const datas = await response.json();
+      let foodLists = [];
+      console.log(datas);
+      for (let keys in datas) {
+        foodLists.push({
+          item: datas[keys].item,
+          itemDescription: datas[keys].itemDescription,
+          id: keys,
+          price: datas[keys].price,
+          itemNeeded: datas[keys].itemNeeded,
+        });
+      }
+      setFoodList(foodLists);
+      setIsLoading(false);
+    };
+
+    fetchmeals()
+      .then()
+      .catch((error) => {
+        console.log(error.message);
+        setIsLoading(false);
+        setError(true);
+      });
+  }, []);
   const [modalOpen, setModalOpen] = useState(false);
 
   const totalItemsNumberArr = foodList.map((food) => {
@@ -116,8 +124,17 @@ function App() {
             </p>
           </div>
         </section>
-        <FoodItems></FoodItems>
-
+        {foodList.length && <FoodItems></FoodItems>}
+        {isLoading && (
+          <div className={classes.loading}>
+            <p>Loading available food items...</p>
+          </div>
+        )}
+        {error && (
+          <div className={classes.error}>
+            <p>Something went wrong...</p>
+          </div>
+        )}
         {modalOpen && <Cart></Cart>}
       </ModalOpenContext.Provider>
     </itemListContext.Provider>
