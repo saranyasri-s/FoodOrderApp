@@ -1,0 +1,28 @@
+.content {
+  margin-top: 2rem;
+}
+.content > p {
+  color: black;
+  font-weight: bold;
+}
+.content .orderFood {
+  color: grey;
+  font-weight: 400;
+}
+.content .hotelAvailability {
+  margin-top: 2rem;
+}
+.hotelAvailability > p {
+  color: #ff8436;
+  font-weight: 200;
+}
+.cities {
+  display: flex;
+  color: grey;
+  flex-wrap: wrap;
+}
+.cities p {
+  margin: 0;
+
+  padding: 0 0.5rem 0 0;
+}

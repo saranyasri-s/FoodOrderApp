@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  align-items: center;
+}
+.navbar h3 {
+  color: #ff8436;
+  font-weight: 900;
+  margin: 0;
+}
+.navbar .buttons {
+  display: flex;
+}
+.login {
+  background-color: white;
+  border: 0;
+  outline: none;
+  font-weight: bolder;
+  margin: 0 1rem;
+}
+.login:hover {
+  color: #ff8436;
+}
+.signup {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+}
+@media (max-width: 400px) {
+  .signup {
+    padding: 10px;
+  }
+}
